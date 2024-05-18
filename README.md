@@ -4,7 +4,7 @@
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-username/ecommerce-backend.git
+    git clone https://github.com/Astrit11/ecommerce-ts.git
     cd ecommerce-backend
     ```
 
