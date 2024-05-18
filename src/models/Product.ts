@@ -1,6 +1,10 @@
-import { Table, Column, Model, DataType } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, HasMany } from 'sequelize-typescript';
+import { Variant } from './Variant';
 
-@Table
+@Table({
+  tableName: 'products',
+  timestamps: true,
+})
 export class Product extends Model<Product> {
   @Column({
     type: DataType.STRING,
@@ -15,7 +19,7 @@ export class Product extends Model<Product> {
   description!: string;
 
   @Column({
-    type: DataType.DECIMAL,
+    type: DataType.DECIMAL(10, 2),
     allowNull: false,
   })
   price!: number;
@@ -25,4 +29,7 @@ export class Product extends Model<Product> {
     allowNull: false,
   })
   inventory!: number;
+
+  @HasMany(() => Variant)
+  variants!: Variant[];
 }

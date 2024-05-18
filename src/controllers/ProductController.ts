@@ -1,15 +1,16 @@
 import { Request, Response } from 'express';
 import { Product } from '../models/Product';
+import { Variant } from '../models/Variant';
 
 export class ProductController {
   async findAll(req: Request, res: Response) {
-    const products = await Product.findAll();
+    const products = await Product.findAll({ include: [Variant] });
     res.json(products);
   }
 
   async findOne(req: Request, res: Response) {
     const id = parseInt(req.params.id);
-    const product = await Product.findByPk(id);
+    const product = await Product.findByPk(id, { include: [Variant] });
     if (product) {
       res.json(product);
     } else {
@@ -18,7 +19,7 @@ export class ProductController {
   }
 
   async create(req: Request, res: Response) {
-    const product = await Product.create(req.body);
+    const product = await Product.create(req.body, { include: [Variant] });
     res.json(product);
   }
 

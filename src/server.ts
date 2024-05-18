@@ -1,14 +1,17 @@
 import express from 'express';
 import { sequelize } from './config/database';
 import productRoutes from './routes/productRoutes';
+import variantRoutes from './routes/variantRoutes';
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
-app.use('/api/v1/', productRoutes);
+app.use('/api/v1', productRoutes);
+app.use('/api/v1', variantRoutes);
 
-sequelize.sync({ force: false })
+// Sync database and start server
+sequelize.sync({ force: true })
   .then(() => {
     console.log('Database synchronized');
     app.listen(port, () => {

@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize-typescript';
 import { Product } from '../models/Product';
-
+import { Variant } from '../models/Variant';
 
 
 export const sequelize = new Sequelize({
@@ -16,5 +16,5 @@ export const sequelize = new Sequelize({
       rejectUnauthorized: false,
     },
   },
-  models: [Product],
+  models: [Product,Variant],
 });
